@@ -1,0 +1,60 @@
+{
+  "@@locale": "en",
+  "appTitle": "Qnote",
+  "noMemos": "No memos yet.\nTap + to create one.",
+  "search": "Search",
+  "settings": "Settings",
+  "trash": "Trash",
+  "newMemo": "New memo",
+  "edit": "Edit",
+  "delete": "Delete",
+  "restore": "Restore",
+  "permanentlyDelete": "Permanently delete",
+  "emptyTrash": "Empty trash",
+  "emptyTrashConfirm": "Delete all items in trash? This cannot be undone.",
+  "pin": "Pin",
+  "unpin": "Unpin",
+  "colorPicker": "Choose color",
+  "share": "Share",
+  "cancel": "Cancel",
+  "ok": "OK",
+  "daysLeft": "{count} days left",
+  "@daysLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "expiringSoon": "Expiring soon",
+  "justNow": "Just now",
+  "minutesAgo": "{count}m ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsTheme": "Theme",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "themeSystem": "System",
+  "settingsDefaultColor": "Default color",
+  "settingsFontSize": "Font size",
+  "settingsViewMode": "View mode",
+  "viewModeList": "List",
+  "viewModeGrid": "Grid",
+  "settingsLanguage": "Language",
+  "settingsRemoveAds": "Remove ads",
+  "settingsRateApp": "Rate app",
+  "settingsVersion": "Version",
+  "characters": "{count} characters",
+  "@characters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}

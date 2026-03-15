@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "setup-dev-env",
+      "type": "shell",
+      "command": "bash",
+      "args": ["scripts/setup_env.sh", "env/dev.json"],
+      "presentation": { "reveal": "silent" },
+      "problemMatcher": []
+    },
+    {
+      "label": "setup-prod-env",
+      "type": "shell",
+      "command": "bash",
+      "args": ["scripts/setup_env.sh", "env/prod.json"],
+      "presentation": { "reveal": "silent" },
+      "problemMatcher": []
+    }
+  ]
+}

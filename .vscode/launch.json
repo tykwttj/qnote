@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Dev",
+      "request": "launch",
+      "type": "dart",
+      "preLaunchTask": "setup-dev-env",
+      "args": [
+        "--dart-define-from-file=env/dev.json"
+      ]
+    },
+    {
+      "name": "Prod",
+      "request": "launch",
+      "type": "dart",
+      "preLaunchTask": "setup-prod-env",
+      "args": [
+        "--dart-define-from-file=env/prod.json"
+      ]
+    }
+  ]
+}
