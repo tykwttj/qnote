@@ -1,0 +1,3 @@
+app_identifier("com.qnote.qnote")
+apple_id("toyoppedayooo@icloud.com") # Your Apple Developer email
+team_id("M7KJX6QVG7") # Apple Developer Team ID

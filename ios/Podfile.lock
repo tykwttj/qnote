@@ -86,6 +86,6 @@ SPEC CHECKSUMS:
   sqlite3_flutter_libs: b3e120efe9a82017e5552a620f696589ed4f62ab
   webview_flutter_wkwebview: 1821ceac936eba6f7984d89a9f3bcb4dea99ebb2
 
-PODFILE CHECKSUM: 17c6fcffb0997ee6cd850f1294808dd8848dd1b2
+PODFILE CHECKSUM: b08c2111b33a1d2877f6959e50dff6deb1f784ad
 
 COCOAPODS: 1.16.2

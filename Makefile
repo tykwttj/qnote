@@ -1,4 +1,4 @@
-.PHONY: run-dev run-prod build-prod-ios build-prod-apk setup-dev setup-prod
+.PHONY: run-dev run-prod build-prod-ios build-prod-apk build-prod-aab setup-dev setup-prod release-ios-beta release-android-internal
 
 ## Development
 run-dev: setup-dev
@@ -15,6 +15,16 @@ build-prod-ios: setup-prod
 ## Android builds
 build-prod-apk: setup-prod
 	flutter build apk --dart-define-from-file=env/prod.json
+
+build-prod-aab: setup-prod
+	flutter build appbundle --release --dart-define-from-file=env/prod.json
+
+## Release (Fastlane)
+release-ios-beta: setup-prod
+	cd ios && bundle exec fastlane beta
+
+release-android-internal: setup-prod
+	cd android && bundle exec fastlane internal
 
 ## Setup helpers (generate iOS xcconfig)
 setup-dev:

@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.x'
+          channel: 'stable'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Create env/prod.json
+        run: echo '${{ secrets.PROD_ENV_JSON }}' > env/prod.json
+
+      - name: Create key.properties
+        run: |
+          echo "storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}" > android/key.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=qnote" >> android/key.properties
+          echo "storeFile=${{ github.workspace }}/qnote-release.keystore" >> android/key.properties
+
+      - name: Decode keystore
+        run: echo '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' | base64 --decode > qnote-release.keystore
+
+      - name: Create Play Store credentials
+        run: echo '${{ secrets.PLAY_STORE_CREDENTIALS }}' > android/play-store-credentials.json
+
+      - run: flutter pub get
+      - name: Deploy to Play Store internal
+        run: cd android && bundle exec fastlane internal
+
+  release-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.x'
+          channel: 'stable'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Create env/prod.json
+        run: echo '${{ secrets.PROD_ENV_JSON }}' > env/prod.json
+
+      - run: flutter pub get
+      - run: cd ios && pod install
+      - name: Deploy to TestFlight
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY: ${{ secrets.ASC_API_KEY }}
+        run: cd ios && bundle exec fastlane beta

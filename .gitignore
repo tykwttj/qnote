@@ -49,3 +49,14 @@ ios/Flutter/DartDefines.xcconfig
 
 # Production env (may contain real ad IDs)
 env/prod.json
+
+# Fastlane
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+*/fastlane/test_output
+fastlane/readme.md
+
+# Ruby / Bundler
+vendor/bundle/
+.bundle/

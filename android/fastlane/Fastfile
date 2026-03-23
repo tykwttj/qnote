@@ -3,7 +3,7 @@ default_platform(:android)
 platform :android do
   desc "Build and deploy to Google Play internal testing"
   lane :internal do
-    sh "cd ../.. && flutter build appbundle --release"
+    sh "cd ../.. && flutter build appbundle --release --dart-define-from-file=env/prod.json"
     upload_to_play_store(
       track: 'internal',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
@@ -16,15 +16,19 @@ platform :android do
 
   desc "Build release APK"
   lane :build do
-    sh "cd ../.. && flutter build apk --release"
+    sh "cd ../.. && flutter build apk --release --dart-define-from-file=env/prod.json"
   end
 
-  desc "Deploy to production"
+  desc "Deploy to production (promote from internal)"
   lane :production do
-    sh "cd ../.. && flutter build appbundle --release"
     upload_to_play_store(
-      track: 'production',
-      aab: '../build/app/outputs/bundle/release/app-release.aab'
+      track: 'internal',
+      track_promote_to: 'production',
+      skip_upload_aab: true,
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
     )
   end
 end
